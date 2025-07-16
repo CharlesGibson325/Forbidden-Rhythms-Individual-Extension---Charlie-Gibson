@@ -59,9 +59,9 @@ RunnerLevel::RunnerLevel(sf::RenderWindow* hwnd, Input* in, GameState* gs, Audio
 
 	//spawn seagull
 	float seagullY = window->getSize().y * 0.05f;
-	float seagullX = window->getSize().x * 1.2f; // 20% off-screen right
+	float seagullX = window->getSize().x * 1.2f;
 	seagull.setPosition(seagullX, seagullY);
-	float seagullSpeed = 300.0f; // adjust speed as needed
+	float seagullSpeed = 300.0f;
 	seagull.setVelocity(-seagullSpeed, 0.0f);
 
 
@@ -168,7 +168,6 @@ void RunnerLevel::update(float dt)
 	{
 		bg.move(-dt * speed, 0);
 		if (bg.getPosition().x + bg.getSize().x < 0) {
-			// Move to the rightmost position
 			float maxX = 0.f;
 			for (const auto& other : BGs)
 				maxX = std::max(maxX, other.getPosition().x);
@@ -191,6 +190,7 @@ void RunnerLevel::update(float dt)
 	{
 		e.move(-dt * speed, 0);
 	}
+
 	//Move seagull egg when it is dropping
 	if (seagull.egg.isAlive() && seagull.eggReadyToDrop) {
 		seagull.egg.move(-dt * speed, 0);
@@ -214,6 +214,16 @@ void RunnerLevel::update(float dt)
 		kickables.end()
 	);
 
+	// Remove platforms off screen
+	platforms.erase(
+		std::remove_if(platforms.begin(), platforms.end(),
+			[this](const GameObject& obj) {
+				return obj.getPosition().x + obj.getSize().x < 0;
+			}),
+		platforms.end()
+	);
+
+
 	// Find the rightmost obstacle position
 	float rightmost = window->getSize().x;
 	for (const auto& obj : jumpables)
@@ -223,7 +233,7 @@ void RunnerLevel::update(float dt)
 	for (const auto& obj : platforms)
 		rightmost = std::max(rightmost, obj.getPosition().x + obj.getSize().x);
 
-	// Always keep at least N obstacles ahead of the player
+	// Always keep obstacles ahead of the player
 	while (rightmost < window->getSize().x * 2) {
 		float gap = getRandomInt(300, 600); // random gap between obstacles
 		rightmost += gap;
@@ -356,6 +366,7 @@ void RunnerLevel::update(float dt)
 
 	// Egg collision detection
 	if (seagull.egg.isAlive()) {
+
 		// Check collision with platforms
 		for (const auto& platform : platforms) {
 			if (seagull.egg.getGlobalBounds().intersects(platform.getGlobalBounds())) {
@@ -392,6 +403,7 @@ void RunnerLevel::update(float dt)
 			explosion.setTextureRect(sf::IntRect(0, 0, texSize.x, texSize.y));
 			explosions.push_back(explosion);
 			explosionTimer.push_back(0.f);
+
 			//take damage
 			lives.takeDamage();
 			speed = 0.f;

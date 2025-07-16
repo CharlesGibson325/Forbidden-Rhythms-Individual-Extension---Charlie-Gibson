@@ -9,7 +9,7 @@ class Seagull : public GameObject
        Seagull();  
        ~Seagull();  
 
-       void update(float dt, float windowWidth); // Ensure this method is public  
+       void update(float dt, float windowWidth);
 
 	    sf::Texture seagullTexture;
 	    Animation fly;

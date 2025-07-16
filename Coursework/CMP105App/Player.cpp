@@ -84,7 +84,7 @@ void Player::handleInput(float dt)
 			jumpHoldTime = 0.f;
 		}
 		else if (isJumping && jumpHoldTime < maxJumpHoldTime) {
-			// Continue to apply upward force while holding, up to a maximum height (maxJumpHoldTime)
+			// Continue to jump higher while holding up to a maximum height
 			stepVelocity.y += jumpHoldForce * dt;
 			jumpHoldTime += dt;
 		}

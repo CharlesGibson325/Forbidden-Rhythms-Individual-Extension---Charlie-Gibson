@@ -21,6 +21,7 @@ Lives::~Lives()
 {
 }
 
+//take damage function
 void Lives::takeDamage()
 {
 	if (currentLives == 3)
@@ -43,6 +44,7 @@ void Lives::takeDamage()
 
 }
 
+//reset lives 
 void Lives::resetLives()
 {
 	currentLives = maxLives;

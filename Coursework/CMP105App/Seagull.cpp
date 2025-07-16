@@ -16,7 +16,8 @@ Seagull::Seagull()
 
 	fly.setFrameSpeed(1.f / 5.f);
 
-	egg.setSize(sf::Vector2f(40, 40)); // adjust as needed
+    //set up egg
+	egg.setSize(sf::Vector2f(40, 40));
 	eggTexture.loadFromFile("gfx/Egg.png");
 	egg.setTexture(&eggTexture);
 	egg.setAlive(false);
@@ -34,12 +35,12 @@ void Seagull::update(float dt, float windowWidth)
 
    // Bounce at left edge  
    if (pos.x <= 0.0f + windowWidth * 0.25) {
-       setVelocity(std::abs(vel.x), 0.0f); // move right  
+       setVelocity(std::abs(vel.x), 0.0f);
 	   fly.setFlipped(true);
    }  
    // Bounce at right edge  
    else if (pos.x + width >= windowWidth * 0.9) {  
-       setVelocity(-std::abs(vel.x), 0.0f); // move left  
+       setVelocity(-std::abs(vel.x), 0.0f);
        fly.setFlipped(false);
    }  
 
@@ -61,7 +62,7 @@ void Seagull::update(float dt, float windowWidth)
        eggDropInterval = 2.0f + static_cast<float>(rand()) / RAND_MAX * 3.0f;
    }
 
-   // If carrying, keep egg attached for 1 second
+   // If carrying keep egg attached for 1 second
    if (carryingEgg && egg.isAlive() && !eggReadyToDrop) {
        eggCarryTimer += dt;
        // Keep egg under seagull
@@ -74,9 +75,7 @@ void Seagull::update(float dt, float windowWidth)
 
    // If ready to drop, let egg fall
    if (carryingEgg && egg.isAlive() && eggReadyToDrop) {
-       egg.move(0, 300 * dt); // gravity
-       // Optionally, set carryingEgg to false when egg is off screen or hits ground
-       // carryingEgg = false; // if you have collision logic elsewhere
+       egg.move(0, 300 * dt); // simple gravity
    }
   
 
