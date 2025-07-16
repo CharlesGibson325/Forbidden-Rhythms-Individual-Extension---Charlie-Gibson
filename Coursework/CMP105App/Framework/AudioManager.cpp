@@ -16,7 +16,6 @@ AudioManager::AudioManager()
 	addSound("sfx/snare.wav", "snare");
 	addSound("sfx/death.wav", "death");
 	addSound("sfx/success.wav", "success");
-
 	addMusic("sfx/bg_digitalLove.wav", "digitalLove");
 }
 

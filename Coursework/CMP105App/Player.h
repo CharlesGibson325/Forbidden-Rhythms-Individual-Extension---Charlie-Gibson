@@ -9,15 +9,21 @@ public:
 	Player();
 	~Player();
 
+	const bool isOnGround();
 	void handleInput(float dt);
 	void setDamaged(float timer);
 	bool isDamaged();
 	void update(float dt);
 	void setFlipped(bool f);
-	void setJumping(float h, float t);
 	bool isKicking();
 	void setKicking(float t);
-	bool canJump() const;
+	void setGroundLevel(float level);
+	void activateRunningMechanics(bool isRunner);
+	bool isRunnerLevel();
+	void setLevelEdges(float left, float right);
+
+
+	
 
 	sf::Texture dino;
 	Input in;
@@ -26,15 +32,34 @@ public:
 	Animation kick;
 	Animation* currentAnimation;
 	
-	// jump component
-	float jumpHeight;
-	float jumpTimeElapsed = 0.f;
-	float jumpTime = 0.f;
 
+
+
+	//gravity and jump components
+	float scale;
+	bool isJumping;
+	sf::Vector2f stepVelocity;
+	sf::Vector2f gravity;
+	sf::Vector2f jumpVector;
+	float jumpHoldTime;
+	float maxJumpHoldTime;
+	float jumpForce;
+	float jumpHoldForce;
+	float groundLevel;
+	bool runnerLevel;
+	bool onGround;
+
+
+	//kick compnents
 	float kickTime = 0.f;
 	float kickTimeElapsed = 0.f;
 
+	//damage components
 	float damagedTimer = 0.f;
 	float damageLength = 100.0f;
+
+	//edge of RunnerLevel variables
+	float boundLeft;
+	float boundRight;
 };
 

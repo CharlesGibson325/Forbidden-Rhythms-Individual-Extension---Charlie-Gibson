@@ -249,9 +249,11 @@
     <ClCompile Include="LecturEH.cpp" />
     <ClCompile Include="Lecturer.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Lives.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RunnerLevel.cpp" />
+    <ClCompile Include="Seagull.cpp" />
     <ClCompile Include="StageGrid.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
@@ -278,8 +280,10 @@
     <ClInclude Include="LecturEH.h" />
     <ClInclude Include="Lecturer.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Lives.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RunnerLevel.h" />
+    <ClInclude Include="Seagull.h" />
     <ClInclude Include="StageGrid.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TitleScreen.h" />

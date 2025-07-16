@@ -72,8 +72,8 @@ void TransitionLevel::update(float dt)
 		}
 		if (results->L2Time > 0)
 		{
-			resultsString += "Level 2 mistakes:\t\t\t" + std::to_string(results->L2Deaths) + "\n";
 			resultsString += "Level 2 time:\t\t\t" + std::to_string(results->L2Time) + " seconds\n\n";
+			resultsString += "Level 2 distance:\t\t" + std::to_string(results->L2Distance) + " metres\n";
 		}
 		if (results->L3Time > 0)
 		{

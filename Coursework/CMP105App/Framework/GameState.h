@@ -29,6 +29,7 @@ public:
 	float L2Time;
 	int L2Deaths;
 	float L2Success;
+	float L2Distance;
 	float L3Time;
 	int L3Deaths;
 	float L3Success;
