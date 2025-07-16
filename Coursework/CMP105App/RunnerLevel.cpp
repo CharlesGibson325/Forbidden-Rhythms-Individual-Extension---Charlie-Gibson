@@ -147,7 +147,6 @@ void RunnerLevel::update(float dt)
 	if (onPlatform)
 	{
 		p.setGroundLevel(platformGroundLevel);
-		std::cout << "Player landed on platform at y=" << platformGroundLevel << std::endl;
 	}
 	else
 	{
